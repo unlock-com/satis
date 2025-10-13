@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="preconnect" href="https://cdn.fonts.net">
+    <script type="text/javascript" src="https://cdn.fonts.net/kit/4f4f2f5d-2699-408c-bd25-ec67e8dce376/4f4f2f5d-2699-408c-bd25-ec67e8dce376_enhanced.js" async></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.fonts.net/kit/4f4f2f5d-2699-408c-bd25-ec67e8dce376/4f4f2f5d-2699-408c-bd25-ec67e8dce376_enhanced.css" />
     {% if description %}
         <meta name="description" content="{{ description|striptags|escape("html_attr") }}">
     {% else %}
@@ -18,7 +20,7 @@
 
     <link rel="icon" type="image/png" href="{{ source('assets/img/favicon.png')|data_uri(mime="image/png") }}">
 
-    <title>{{ name|default('Composer repository') }}</title>
+    <title>Unlock Packagist</title>
 
     <style type="text/css">
         {% include 'build/style.css' %}
@@ -31,7 +33,7 @@
     <header class="mt-3">
         <div class="d-flex justify-content-between align-items-center">
             <a href="{{ url }}">
-                <h1>{{ name|default('Composer repository') }}</h1>
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjkyIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMjkyIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMzAuNTk3IDI4LjI3MzZMNDQuMjEyMSAwTDYxLjE5MDkgMjEuMjkzMkw1NS4xMzIzIDQ3Ljg0MTdMMzAuNTk3IDU5LjY1ODFWMjguMjczNloiIGZpbGw9IiNGQkNEMTgiLz4KPHBhdGggZD0iTTQ0LjIxMjIgMEgxNi45Nzg4TDAgMjEuMjkzMkw2LjA1ODYxIDQ3Ljg0MTdMMzAuNTk3MSA1OS42NTgxVjI4LjI3MzZMNDQuMjEyMiAwWiIgZmlsbD0iIzAwMjJGRiIvPgo8cGF0aCBkPSJNMTY2LjY4MSAwSDE1Ny43NzNWNTAuNDA4NkgxNjYuNjgxVjBaIiBmaWxsPSIjMDAyMkZGIi8+CjxwYXRoIGQ9Ik0xNzIuMjE3IDMzLjE0NDhDMTcyLjIxNyAyMi44NjE1IDE4MC4zMDIgMTQuOTExMyAxOTAuNDU0IDE0LjkxMTNDMjAwLjYwNiAxNC45MTEzIDIwOC43NTggMjIuODU1MSAyMDguNzU4IDMzLjE0NDhDMjA4Ljc1OCA0My40MzQ2IDIwMC42MDYgNTEuMzc1MSAxOTAuNDU0IDUxLjM3NTFDMTgwLjMwMiA1MS4zNzUxIDE3Mi4yMTcgNDMuNDMxNCAxNzIuMjE3IDMzLjE0NDhaTTE5OS44NDggMzMuMTQ0OEMxOTkuODQ4IDI3LjU1MzUgMTk1Ljc2NyAyMy42MTM2IDE5MC40NTEgMjMuNjEzNkMxODUuMTM1IDIzLjYxMzYgMTgxLjEyMSAyNy41NTM1IDE4MS4xMjEgMzMuMTQ0OEMxODEuMTIxIDM4LjczNjIgMTg1LjE5NiA0Mi42NzYgMTkwLjQ1MSA0Mi42NzZDMTk1LjcwNiA0Mi42NzYgMTk5Ljg0OCAzOC43MzMgMTk5Ljg0OCAzMy4xNDQ4WiIgZmlsbD0iIzAwMjJGRiIvPgo8cGF0aCBkPSJNMjEyLjI4MSAzMy4xNDQ4QzIxMi4yODEgMjIuODYxNSAyMjAuMDIgMTQuOTExMyAyMzAuNTE4IDE0LjkxMTNDMjM3LjI4NyAxNC45MTEzIDI0My4xNTQgMTguNTA1NSAyNDUuOTg5IDIzLjgxODRMMjM4LjMxOCAyOC4zMTJDMjM2LjkzNSAyNS40NzYzIDIzMy45NzIgMjMuNjgwOCAyMzAuNDQxIDIzLjY4MDhDMjI1LjEyMiAyMy42ODA4IDIyMS4xODIgMjcuNjIwNyAyMjEuMTgyIDMzLjEzNTJDMjIxLjE4MiAzOC42NDk4IDIyNS4xMjIgNDIuNTI4OCAyMzAuNDQxIDQyLjUyODhDMjM0LjAzNiA0Mi41Mjg4IDIzNy4wMDkgNDAuNzk3MyAyMzguMzkxIDM3Ljk3MTJMMjQ2LjEzIDQyLjM5NDRDMjQzLjE2MyA0Ny43ODA5IDIzNy4yODcgNTEuMzcxOSAyMzAuNTE4IDUxLjM3MTlDMjIwLjAyIDUxLjM3MTkgMjEyLjI4MSA0My40MjgyIDIxMi4yODEgMzMuMTM4NFYzMy4xNDhWMzMuMTQ0OFoiIGZpbGw9IiMwMDIyRkYiLz4KPHBhdGggZD0iTTI4Mi4xMTEgNTAuNDA4NkwyNjcuODExIDMyLjk0MzJMMjgxLjcwNCAxNS44ODQzSDI3MS4wNjZMMjU5LjE4NSAzMS4wNzczVjIuMDczOTRIMjUwLjI4MlY1MC40MDg2SDI1OS4xODVWMzQuNzMyM0wyNzEuNzU3IDUwLjQwODZIMjgyLjExMVoiIGZpbGw9IiMwMDIyRkYiLz4KPHBhdGggZD0iTTEzNC42MDggMTQuOTE0NUMxMzQuNjA4IDE0LjkxNDUgMTM0LjU3OSAxNC45MTQ1IDEzNC41NjMgMTQuOTE0NUMxMzQuNTQ3IDE0LjkxNDUgMTM0LjUzNCAxNC45MTQ1IDEzNC41MTggMTQuOTE0NUMxMjQuOTc0IDE0Ljk2MjUgMTE4LjQ4NCAyMS45NzgxIDExOC40ODQgMzEuNjgyMlY1MC40MTE3SDEyNy4zOTFDMTI3LjM5MSA1MC40MTE3IDEyNy4yNSAzNi44NTQyIDEyNy4yNSAzMS45ODYyQzEyNy4yNSAyNy4xMTgyIDEzMC4xOTEgMjMuNjQyNCAxMzQuNTY2IDIzLjYyQzEzOC45NDIgMjMuNjQ1NiAxNDEuODgzIDI3LjEzNzQgMTQxLjg4MyAzMS45ODYyQzE0MS44ODMgMzYuODM1IDE0MS43NDIgNTAuNDE1IDE0MS43NDIgNTAuNDE1SDE1MC42NDlWMzEuNjgyMkMxNTAuNjQ5IDIxLjk3ODEgMTQ0LjE1NSAxNC45NjI1IDEzNC42MTQgMTQuOTE3N0wxMzQuNjA4IDE0LjkxNDVaIiBmaWxsPSIjMDAyMkZGIi8+CjxwYXRoIGQ9Ik05NS45MDA2IDUxLjM3NTFDOTUuOTAwNiA1MS4zNzUxIDk1LjkyOTQgNTEuMzc1MSA5NS45NDU0IDUxLjM3NTFDOTUuOTYxNCA1MS4zNzUxIDk1Ljk3NDIgNTEuMzc1MSA5NS45OTAyIDUxLjM3NTFDMTA1LjUzNCA1MS4zMjcxIDExMi4wMjUgNDQuMzExNSAxMTIuMDI1IDM0LjYwNzVWMTUuODc3OUgxMDMuMTE4QzEwMy4xMTggMTUuODc3OSAxMDMuMjU5IDI5LjQzNTQgMTAzLjI1OSAzNC4zMDM0QzEwMy4yNTkgMzkuMTcxNCAxMDAuMzE3IDQyLjY0NzIgOTUuOTQyMiA0Mi42Njk2QzkxLjU2NyA0Mi42NDQgODguNjI1NyAzOS4xNTIyIDg4LjYyNTcgMzQuMzAzNEM4OC42MjU3IDI5LjQ1NDYgODguNzY2NiAxNS44NzQ3IDg4Ljc2NjYgMTUuODc0N0g3OS44NTk1VjM0LjYwNzVDNzkuODU5NSA0NC4zMTE1IDg2LjM1MzQgNTEuMzI3MSA5NS44OTQyIDUxLjM3MTlMOTUuOTAwNiA1MS4zNzUxWiIgZmlsbD0iIzAwMjJGRiIvPgo8cGF0aCBkPSJNMjg3LjIwNSA0Ni42Nzg3VjQ3LjM0OTVIMjg2LjE2NVY1MC4zMDQzSDI4NS40MzVWNDcuMzQ5NUgyODQuMzc3VjQ2LjY3ODdIMjg3LjIwNVpNMjkwLjY3MSA0Ni42Nzg3SDI5MS40MDFWNTAuMzA0M0gyOTAuNjcxVjQ3Ljg5MzNMMjg5LjU1OSA0OS42NTE3SDI4OS40ODZMMjg4LjM3MyA0Ny44OTMzVjUwLjMwNDNIMjg3LjY0M1Y0Ni42Nzg3SDI4OC4zNzNMMjg5LjUyMiA0OC40OTE1TDI5MC42NzEgNDYuNjc4N1oiIGZpbGw9IiMwMDIyRkYiLz4KPC9zdmc+Cg==" width="290px" alt="Unlock">
             </a>
             <span class="badge bg-light text-dark m-1" title="{{ "now"|date(constant('\\DateTime::COOKIE')) }}">
                 Last updated: <br class="d-md-none"> <time datetime="{{ "now"|date(constant('\\DateTime::RFC3339')) }}">{{ "now"|date('l, d M Y H:i:s T') }}</time>
@@ -62,21 +64,17 @@
                     {% endfor %}
                 </optgroup>
             </select>
-            <div class="input-group-append">
-                <button
-                    class="btn btn-outline-secondary d-none toggle-settings"
-                    type="button"
-                    aria-pressed="false"
-                    aria-label="Toggle settings"
-                    title="Toggle settings"
-                    aria-expanded="false"
-                    aria-controls="package-filter-settings"
-                >
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" role="img">
-                        <path d="M11.998 7.66A4.339 4.339 0 007.661 12a4.342 4.342 0 004.337 4.34A4.33 4.33 0 0016.323 12a4.327 4.327 0 00-4.325-4.34zm8.697 6.833l-.782 1.883 1.395 2.739.184.362-1.933 1.933-3.173-1.498-1.883.773-.956 2.927-.122.388h-2.733l-1.183-3.303-1.883-.777-2.743 1.391-.362.181-1.933-1.932 1.497-3.174-.776-1.882-2.921-.954L0 13.425v-2.732L3.306 9.51l.775-1.88-1.39-2.745-.183-.36 1.93-1.93L7.615 4.09l1.88-.778.956-2.924.123-.388h2.732l1.183 3.307 1.879.778 2.744-1.392.365-.184 1.931 1.93-1.496 3.172.773 1.885 2.93.955.385.123v2.73l-3.305 1.189z"/>
-                    </svg>
-                </button>
-            </div>
+            <button
+                class="btn btn-outline-secondary d-none toggle-settings"
+                type="button"
+                aria-pressed="false"
+                aria-label="Toggle settings"
+                title="Toggle settings"
+                aria-expanded="false"
+                aria-controls="package-filter-settings"
+            >
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Pro v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M200.1-16l112 0 19.7 95.5c14.1 6 27.3 13.7 39.3 22.8l92.6-30.7 56 97-72.9 64.8c.9 7.4 1.3 15 1.3 22.7s-.5 15.3-1.3 22.7l72.9 64.8-56 97-92.6-30.7c-12.1 9.1-25.3 16.7-39.3 22.8l-19.7 95.5-112 0-19.7-95.5c-14.1-6-27.2-13.7-39.3-22.8l-92.6 30.7-56-97 72.9-64.8c-.9-7.4-1.3-15-1.3-22.7s.5-15.3 1.3-22.7l-72.9-64.8 56-97 92.6 30.7c12.1-9.1 25.3-16.7 39.3-22.8L200.1-16zm56 352a80 80 0 1 0 -.1-160 80 80 0 1 0 .1 160z"/></svg>
+            </button>
         </div>
     </form>
     <form id="package-filter-settings" class="my-3 card settings">
@@ -192,13 +190,9 @@
     </div>
     <label for="copy-snippet__input" class="visually-hidden">Release code snippet for composer json</label>
     <input id="copy-snippet__input" class="copy-snippet__input form-control" type="text">
-    <div class="input-group-append">
-        <button class="btn btn-outline-secondary copy-snippet__button" aria-label="Copy to clipboard" title="Copy to clipboard">
-            <svg role="img" height="24" width="22.4" viewBox="0 0 1024 896" xmlns="http://www.w3.org/2000/svg">
-                <path d="M704 896h-640v-576h640v192h64v-320c0-35-29-64-64-64h-192c0-71-57-128-128-128s-128 57-128 128h-192c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64v-128h-64v128z m-512-704c29 0 29 0 64 0s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64 33 0 64 0 64 29 64 64h-512c0-39 28-64 64-64z m-64 512h128v-64h-128v64z m448-128v-128l-256 192 256 192v-128h320v-128h-320z m-448 256h192v-64h-192v64z m320-448h-320v64h320v-64z m-192 128h-128v64h128v-64z"></path>
-            </svg>
-        </button>
-    </div>
+    <button class="btn btn-outline-secondary copy-snippet__button" aria-label="Copy to clipboard" title="Copy to clipboard">
+        <svg width="21" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Pro v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M352 0l-224 0 0 384 320 0 0-288-96-96zM64 128l-64 0 0 384 320 0 0-80-64 0 0 16-192 0 0-256 16 0 0-64-16 0z"/></svg>
+    </button>
 </div>
 
 <script type="text/javascript">

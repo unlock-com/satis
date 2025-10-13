@@ -1,0 +1,16 @@
+{
+    "name": "unlk/satis",
+    "description": "Private Repository Library used by Unlock developers.",
+    "homepage": "https://unlock-com.github.io/",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/megamenu-pro.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/cdp-analytics.git"
+        }
+    ],
+    "require-all": true
+}

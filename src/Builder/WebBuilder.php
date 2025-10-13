@@ -37,7 +37,6 @@ class WebBuilder extends Builder
         'homepage' => 'Homepage',
         'license' => 'License',
         'authors' => 'Authors',
-        'support' => 'Support',
         'releases' => 'Releases',
         'required-by' => 'Required by',
     ];
