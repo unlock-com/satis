@@ -1,0 +1,170 @@
+name: Build Satis and Publish to Pages
+
+on:
+  push:
+    paths:
+      - "satis.json"
+      - "views/**"
+  repository_dispatch:
+    types: [satis-source-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PUBLISH_REPO: unlock-com/unlock-com.github.io
+  COMMIT_NAME: satis-bot
+  COMMIT_EMAIL: satis-bot@users.noreply.github.com
+
+  # only fonts are copied post-build (like your local script’s intent)
+  FONTS_SRC: "views/build/fonts"
+  FONTS_DST: "build/fonts"
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Checkout Satis repo (this repo with bin/satis, satis.json, views/)
+      - name: Checkout Satis repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # 2) PHP 8.3 + Composer v2
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          extensions: zip, mbstring, intl, json
+          ini-values: xdebug.mode=off
+          coverage: none
+
+      # 3) Ensure Composer isn’t pinned to older PHP
+      - name: Use real PHP version (unset Composer platform pin)
+        run: |
+          composer config --unset platform.php || true
+          php -v
+          composer --version
+
+      # 4) Enable global git auth for Composer/Satis GIT clones (ssh & https)
+      - name: Enable PAT for all github.com clones (build phase)
+        env:
+          GH_PAT: ${{ secrets.SATIS_GH_PAT }}  # must have repo scope / Contents R+W as needed; SSO-authorized if org enforces SSO
+        run: |
+          set -e
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+          B64=$(printf "x-access-token:%s" "$GH_PAT" | base64)
+          git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $B64"
+          git config --global credential.helper ""
+
+      # 5) Install deps for your Satis repo (composer install)
+      - name: Composer install (Satis)
+        env:
+          COMPOSER_AUTH: |
+            { "github-oauth": { "github.com": "${{ secrets.SATIS_GH_PAT }}" } }
+          COMPOSER_ALLOW_SUPERUSER: 1
+        run: |
+          composer install --no-dev --prefer-dist --no-interaction --ansi
+
+      # 6) TEMPORARILY remove global header to avoid checkout 400 (duplicate Authorization)
+      - name: Disable global extraheader for checkout
+        run: |
+          git config --global --unset-all http.https://github.com/.extraheader || true
+
+      # 7) Checkout GitHub Pages repo (publish target) to _pages
+      - name: Checkout Pages repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PUBLISH_REPO }}
+          path: _pages
+          fetch-depth: 0
+          persist-credentials: false
+
+      # 8) Prepare Pages repo (detect default branch, set PAT on remote, reset hard)
+      - name: Prepare Pages repo
+        id: pages_prep
+        working-directory: _pages
+        env:
+          PUSH_TOKEN: ${{ secrets.SATIS_GH_PAT }}
+        run: |
+          set -euo pipefail
+          git remote set-url origin "https://x-access-token:${PUSH_TOKEN}@github.com/${{ env.PUBLISH_REPO }}.git"
+          git fetch --prune origin
+          DEFAULT_REF="$(git rev-parse --abbrev-ref origin/HEAD)" || DEFAULT_REF="origin/main"
+          DEFAULT_BRANCH="${DEFAULT_REF#origin/}"
+          echo "branch=${DEFAULT_BRANCH}" >> "$GITHUB_OUTPUT"
+          git checkout -B "${DEFAULT_BRANCH}"
+          git reset --hard "origin/${DEFAULT_BRANCH}"
+
+      # 9) Re-enable global header so Satis can clone private repos during build
+      - name: Re-enable global extraheader for build
+        env:
+          GH_PAT: ${{ secrets.SATIS_GH_PAT }}
+        run: |
+          set -e
+          B64=$(printf "x-access-token:%s" "$GH_PAT" | base64)
+          git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $B64"
+
+      # 10) Create a TEMP symlink so Satis can always find ./views during render,
+      #     even if it chdirs into the output dir while writing the web view.
+      - name: Link views into Pages working tree (TEMP)
+        run: |
+          set -e
+          rm -f "_pages/views" || true
+          ln -s "$(pwd)/views" "_pages/views"
+
+      # 11) Build like local: run from satis root → output to Pages repo root
+      - name: Build Satis directly into Pages root (like local)
+        env:
+          COMPOSER_AUTH: |
+            { "github-oauth": { "github.com": "${{ secrets.SATIS_GH_PAT }}" } }
+          COMPOSER_ALLOW_SUPERUSER: 1
+        run: |
+          set -euo pipefail
+          php bin/satis build ./satis.json ./_pages --no-interaction --ansi
+          test -f "_pages/packages.json" || (echo "packages.json missing in _pages"; ls -la _pages; exit 1)
+          touch "_pages/.nojekyll" || true
+
+      # 12) Remove the TEMP symlink so it does not get published
+      - name: Remove temp views symlink (do not publish)
+        run: |
+          rm -f "_pages/views" || true
+
+      # 13) Copy ONLY fonts (views/build/fonts → build/fonts) like your local script
+      - name: Copy fonts
+        run: |
+          if [ -d "${{ env.FONTS_SRC }}" ]; then
+            mkdir -p "_pages/${{ env.FONTS_DST }}"
+            rsync -a "${{ env.FONTS_SRC }}/" "_pages/${{ env.FONTS_DST }}/"
+            echo "Copied fonts to _pages/${{ env.FONTS_DST }}"
+          else
+            echo "No fonts to copy (skipped)."
+          fi
+
+      # 14) Commit & push to the Pages default branch
+      - name: Commit & push (Pages)
+        working-directory: _pages
+        env:
+          TZ: America/New_York
+        run: |
+          set -euo pipefail
+          git config user.name  "${COMMIT_NAME}"
+          git config user.email "${COMMIT_EMAIL}"
+
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
+
+          current_date=$(date +"%m/%d/%Y")
+          current_time=$(date +"%I:%M %p")
+          git commit -m "Package Updates on ${current_date} at ${current_time}"
+
+          BRANCH="${{ steps.pages_prep.outputs.branch }}"
+          git push origin "HEAD:${BRANCH}" || { git pull --rebase origin "${BRANCH}"; git push origin "HEAD:${BRANCH}"; }
