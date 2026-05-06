@@ -13,6 +13,7 @@ permissions:
   contents: read
 
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   PUBLISH_REPO: unlock-com/unlock-com.github.io
   COMMIT_NAME: satis-bot
   COMMIT_EMAIL: satis-bot@users.noreply.github.com
