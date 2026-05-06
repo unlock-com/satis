@@ -10,6 +10,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/unlock-com/cdp-analytics.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-smarty-autocomplete.git"
         }
     ],
     "require-all": true
