@@ -18,6 +18,14 @@
         {
             "type": "vcs",
             "url": "https://github.com/unlock-com/gf-bootstrap5-floating-labels"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-segment-identify"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-trustedform"
         }
     ],
     "require-all": true
