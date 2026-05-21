@@ -26,6 +26,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/unlock-com/gf-trustedform"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gravityformsmax"
         }
     ],
     "require-all": true
