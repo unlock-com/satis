@@ -66,10 +66,11 @@ jobs:
       # 5) Install deps for your Satis repo (composer install)
       - name: Composer install (Satis)
         env:
-          COMPOSER_AUTH: |
-            { "github-oauth": { "github.com": "${{ secrets.SATIS_GH_PAT }}" } }
+          GH_PAT: ${{ secrets.SATIS_GH_PAT }}
           COMPOSER_ALLOW_SUPERUSER: 1
         run: |
+          CLEAN_PAT=$(printf '%s' "$GH_PAT" | tr -d '[:space:]')
+          export COMPOSER_AUTH='{"github-oauth":{"github.com":"'"$CLEAN_PAT"'"}}'
           composer install --no-dev --prefer-dist --no-interaction --ansi
 
       # 6) TEMPORARILY remove global header to avoid checkout 400 (duplicate Authorization)
@@ -122,11 +123,12 @@ jobs:
       # 11) Build like local: run from satis root → output to Pages repo root
       - name: Build Satis directly into Pages root (like local)
         env:
-          COMPOSER_AUTH: |
-            { "github-oauth": { "github.com": "${{ secrets.SATIS_GH_PAT }}" } }
+          GH_PAT: ${{ secrets.SATIS_GH_PAT }}
           COMPOSER_ALLOW_SUPERUSER: 1
         run: |
           set -euo pipefail
+          CLEAN_PAT=$(printf '%s' "$GH_PAT" | tr -d '[:space:]')
+          export COMPOSER_AUTH='{"github-oauth":{"github.com":"'"$CLEAN_PAT"'"}}'
           php bin/satis build ./satis.json ./_pages --no-interaction --ansi
           test -f "_pages/packages.json" || (echo "packages.json missing in _pages"; ls -la _pages; exit 1)
           touch "_pages/.nojekyll" || true
