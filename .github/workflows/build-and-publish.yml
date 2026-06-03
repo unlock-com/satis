@@ -57,9 +57,10 @@ jobs:
           GH_PAT: ${{ secrets.SATIS_GH_PAT }}  # must have repo scope / Contents R+W as needed; SSO-authorized if org enforces SSO
         run: |
           set -e
+          CLEAN_PAT=$(printf '%s' "$GH_PAT" | tr -d '[:space:]')
           git config --global url."https://github.com/".insteadOf "git@github.com:"
           git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
-          B64=$(printf "x-access-token:%s" "$GH_PAT" | base64)
+          B64=$(printf "x-access-token:%s" "$CLEAN_PAT" | base64 -w 0)
           git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $B64"
           git config --global credential.helper ""
 
@@ -109,7 +110,8 @@ jobs:
           GH_PAT: ${{ secrets.SATIS_GH_PAT }}
         run: |
           set -e
-          B64=$(printf "x-access-token:%s" "$GH_PAT" | base64)
+          CLEAN_PAT=$(printf '%s' "$GH_PAT" | tr -d '[:space:]')
+          B64=$(printf "x-access-token:%s" "$CLEAN_PAT" | base64 -w 0)
           git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $B64"
 
       # 10) Create a TEMP symlink so Satis can always find ./views during render,
