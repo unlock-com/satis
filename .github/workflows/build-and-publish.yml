@@ -96,7 +96,8 @@ jobs:
           PUSH_TOKEN: ${{ secrets.SATIS_GH_PAT }}
         run: |
           set -euo pipefail
-          git remote set-url origin "https://x-access-token:${PUSH_TOKEN}@github.com/${{ env.PUBLISH_REPO }}.git"
+          CLEAN_PUSH_TOKEN=$(printf '%s' "$PUSH_TOKEN" | tr -d '[:space:]')
+          git remote set-url origin "https://x-access-token:${CLEAN_PUSH_TOKEN}@github.com/${{ env.PUBLISH_REPO }}.git"
           git fetch --prune origin
           DEFAULT_REF="$(git rev-parse --abbrev-ref origin/HEAD)" || DEFAULT_REF="origin/main"
           DEFAULT_BRANCH="${DEFAULT_REF#origin/}"
@@ -130,6 +131,10 @@ jobs:
         run: |
           set -euo pipefail
           CLEAN_PAT=$(printf '%s' "$GH_PAT" | tr -d '[:space:]')
+          # Write clean token directly to global Composer auth so Satis always reads
+          # a clean token from auth.json, regardless of any local auth.json that Satis
+          # may encounter when it changes working directories mid-build.
+          composer config --global --auth github-oauth.github.com "$CLEAN_PAT"
           export COMPOSER_AUTH='{"github-oauth":{"github.com":"'"$CLEAN_PAT"'"}}'
           php bin/satis build ./satis.json ./_pages --no-interaction --ansi
           test -f "_pages/packages.json" || (echo "packages.json missing in _pages"; ls -la _pages; exit 1)
