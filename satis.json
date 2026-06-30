@@ -1,7 +1,7 @@
 {
     "name": "unlk/satis",
     "description": "Private Repository Library used by Unlock developers.",
-    "homepage": "https://unlock-com.github.io/",
+    "homepage": "https://packagist.github.io/",
     "repositories": [
         {
             "type": "vcs",
@@ -30,6 +30,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/unlock-com/gravityformsmax"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-conditional-submit-text"
         }
     ],
     "require-all": true
