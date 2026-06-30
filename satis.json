@@ -1,0 +1,40 @@
+{
+    "name": "unlk/satis",
+    "description": "Private Repository Library used by Unlock developers.",
+    "homepage": "https://packagist.github.io/",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/megamenu-pro.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/cdp-analytics.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-smarty-autocomplete.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-bootstrap5-floating-labels"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-segment-identify"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-trustedform"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gravityformsmax"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-conditional-submit-text"
+        }
+    ],
+    "require-all": true
+}

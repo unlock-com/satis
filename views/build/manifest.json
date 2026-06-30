@@ -1,4 +1,10 @@
 {
   "build/app.js": "/build/app.js",
-  "build/style.css": "/build/style.css"
+  "build/style.css": "/build/style.css",
+  "build/fonts/fa-sharp-duotone-thin-100.woff2": "/build/fonts/fa-sharp-duotone-thin-100.c52c3acd.woff2",
+  "build/fonts/fa-sharp-duotone-light-300.woff2": "/build/fonts/fa-sharp-duotone-light-300.318e5d73.woff2",
+  "build/fonts/fa-sharp-thin-100.woff2": "/build/fonts/fa-sharp-thin-100.051111c4.woff2",
+  "build/fonts/fa-sharp-light-300.woff2": "/build/fonts/fa-sharp-light-300.3db91e33.woff2",
+  "build/fonts/fa-sharp-duotone-solid-900.woff2": "/build/fonts/fa-sharp-duotone-solid-900.9f77e415.woff2",
+  "build/fonts/fa-brands-400.woff2": "/build/fonts/fa-brands-400.b5e46ed3.woff2"
 }

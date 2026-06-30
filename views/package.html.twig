@@ -42,7 +42,7 @@
             <dt class="{{ col1_class }} field-keywords">Keywords</dt>
             <dd class="{{ col2_class }} field-keywords filter-by">
                 {% for keyword in package.highest.keywords|sort %}
-                <span class="badge text-bg-info">{{ keyword }}</span>
+                <span class="badge badge-sm text-bg-info">{{ keyword }}</span>
                 {% endfor %}
             </dd>
         {% endif %}
@@ -73,16 +73,6 @@
             </dd>
         {% endif %}
 
-        {% if package.highest.support %}
-            <dt class="{{ col1_class }} field-support">Support</dt>
-            <dd class="{{ col2_class }} field-support filter-by">
-                <ul class="list-unstyled m-0">
-                    {% for support_type, support_url in package.highest.support %}
-                    <li>{{ support_type|capitalize }}: <a href="{{ support_url }}">{{ support_url }}</a></li>
-                    {% endfor %}
-                </ul>
-            </dd>
-        {% endif %}
 
             <dt class="{{ col1_class }} field-releases">Releases</dt>
             <dd class="{{ col2_class }} field-releases filter-by" data-package-name="{{ package.highest.name }}">
@@ -96,11 +86,11 @@
                 {%- if package.highest.type == 'metapackage' -%}
                 {{ version.prettyVersion }}
                 {%- elseif version.distType -%}
-                <a class="badge rounded-pill text-bg-secondary" href="{{ version.distUrl }}" title="dist-reference: {{ version.distReference }}{{ branch_alias }}">{{ version.prettyVersion }}</a>
+                <a class="badge text-bg-action badge-sm" href="{{ version.distUrl }}" title="dist-reference: {{ version.distReference }}{{ branch_alias }}">{{ version.prettyVersion }}</a>
                 {%- elseif version.sourceUrl matches '#^https?:\\/\\/#' -%}
-                <a class="badge rounded-pill text-bg-secondary" href="{{ version.sourceUrl }}" title="source-reference: {{ version.sourceReference }}{{ branch_alias }}">{{ version.prettyVersion }}</a>
+                <a class="badge text-bg-action badge-sm" href="{{ version.sourceUrl }}" title="source-reference: {{ version.sourceReference }}{{ branch_alias }}">{{ version.prettyVersion }}</a>
                 {%- else -%}
-                <span class="badge rounded-pill text-bg-secondary" title="source-reference: {{ version.sourceReference }}{{ branch_alias }}">{{ version.prettyVersion }}</span>
+                <span class="badge text-bg-action badge-sm" title="source-reference: {{ version.sourceReference }}{{ branch_alias }}">{{ version.prettyVersion }}</span>
                 {%- endif -%}
                 {% endfor %}
             </dd>

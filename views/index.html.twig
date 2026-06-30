@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="preconnect" href="https://cdn.fonts.net">
+    <script type="text/javascript" src="https://cdn.fonts.net/kit/4f4f2f5d-2699-408c-bd25-ec67e8dce376/4f4f2f5d-2699-408c-bd25-ec67e8dce376_enhanced.js" async></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.fonts.net/kit/4f4f2f5d-2699-408c-bd25-ec67e8dce376/4f4f2f5d-2699-408c-bd25-ec67e8dce376_enhanced.css" />
     {% if description %}
         <meta name="description" content="{{ description|striptags|escape("html_attr") }}">
     {% else %}
@@ -18,7 +20,7 @@
 
     <link rel="icon" type="image/png" href="{{ source('assets/img/favicon.png')|data_uri(mime="image/png") }}">
 
-    <title>{{ name|default('Composer repository') }}</title>
+    <title>Unlock Packagist</title>
 
     <style type="text/css">
         {% include 'build/style.css' %}
@@ -31,7 +33,7 @@
     <header class="mt-3">
         <div class="d-flex justify-content-between align-items-center">
             <a href="{{ url }}">
-                <h1>{{ name|default('Composer repository') }}</h1>
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTIzIiBoZWlnaHQ9IjEwNyIgdmlld0JveD0iMCAwIDUyMyAxMDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik01NC44OTA3IDUwLjcyOTVMNzkuMzA0MyAwTDEwOS43NDIgMzguMjA1Nkw5OC44ODI3IDg1LjgwNDJMNTQuODkwNyAxMDcuMDA3VjUwLjcyOTVaIiBmaWxsPSIjRkJDRDE4Ii8+CjxwYXRoIGQ9Ik03OS4zMDQ1IDBIMzAuNDM3N0wwIDM4LjIwNTZMMTAuODU5MyA4NS44MDQyTDU0Ljg5MDkgMTA3LjAwN1Y1MC43Mjk1TDc5LjMwNDUgMFoiIGZpbGw9IiMwMDIyRkYiLz4KPHBhdGggZD0iTTI5OC45ODcgMEgyODMuMDE1VjkwLjQwMTVIMjk4Ljk4N1YwWiIgZmlsbD0iIzAwMjJGRiIvPgo8cGF0aCBkPSJNMzU4LjQ3NSA1OS40NDY3QzM1OC40NzUgNDkuNDE5NyAzNTEuMTQzIDQyLjM2NTIgMzQxLjYzMSA0Mi4zNjUyQzMzMi4xMiA0Mi4zNjUyIDMyNC45MDcgNDkuNDE5NyAzMjQuOTA3IDU5LjQ0NjdDMzI0LjkwNyA2OS40NzM3IDMzMi4xOTkgNzYuNTI4MyAzNDEuNjMxIDc2LjUyODNDMzUxLjA2NCA3Ni41MjgzIDM1OC40NzUgNjkuNDczNyAzNTguNDc1IDU5LjQ0NjdaTTMwOC44OTUgNTkuNDQ2N0MzMDguODk1IDQxLjAxNzcgMzIzLjQwMSAyNi43NSAzNDEuNTkyIDI2Ljc1QzM1OS43ODMgMjYuNzUgMzc0LjQwNyA0MS4wMTc3IDM3NC40MDcgNTkuNDQ2N0MzNzQuNDA3IDc3Ljg3NTggMzU5Ljc4MyA5Mi4xNDM1IDM0MS41OTIgOTIuMTQzNUMzMjMuNDAxIDkyLjE0MzUgMzA4Ljg5NSA3Ny45MTU0IDMwOC44OTUgNTkuNDQ2N1oiIGZpbGw9IiMwMDIyRkYiLz4KPHBhdGggZD0iTTM4MC43ODggNTkuNDQ2N0MzODAuNzg4IDQxLjAxNzcgMzk0LjY2IDI2Ljc1IDQxMy40ODUgMjYuNzVDNDI1LjYxMyAyNi43NSA0MzYuMTU1IDMzLjIxMDEgNDQxLjIyOCA0Mi43MjE5TDQyNy40NzUgNTAuNzY3MkM0MjQuOTc5IDQ1LjY5NDMgNDE5LjY2OCA0Mi40NDQ0IDQxMy4zNjYgNDIuNDQ0NEM0MDMuODE1IDQyLjQ0NDQgMzk2Ljc2IDQ5LjQ5OSAzOTYuNzYgNTkuNDA3MUMzOTYuNzYgNjkuMzE1MiA0MDMuODE1IDc2LjI1MDkgNDEzLjM2NiA3Ni4yNTA5QzQxOS44MjYgNzYuMjUwOSA0MjUuMTM3IDczLjE1OTUgNDI3LjYzNCA2OC4wODY2TDQ0MS41MDUgNzYuMDEzMUM0MzYuMTk1IDg1LjY4MzQgNDI1LjY1MiA5Mi4xMDM4IDQxMy40ODUgOTIuMTAzOEMzOTQuNjYgOTIuMTAzOCAzODAuNzg4IDc3LjgzNjIgMzgwLjc4OCA1OS40MDcxVjU5LjQ0NjdaIiBmaWxsPSIjMDAyMkZGIi8+CjxwYXRoIGQ9Ik01MDYuMDI3IDkwLjQwMjZMNDgwLjM4NCA1OS4wOTNMNTA1LjI3MyAyOC40OTY4SDQ4Ni4yMUw0NjQuODg4IDU1LjcyNDNWMy43MjY1Nkg0NDguOTE2VjkwLjQwMjZINDY0Ljg4OFY2Mi4zMDMzTDQ4Ny40MzkgOTAuNDAyNkg1MDYuMDI3WiIgZmlsbD0iIzAwMjJGRiIvPgo8cGF0aCBkPSJNMjQxLjQ0MSAyNi43NUMyNDEuNDQxIDI2Ljc1IDI0MS40MDEgMjYuNzUgMjQxLjM2MSAyNi43NUMyNDEuMzYxIDI2Ljc1IDI0MS4zMjIgMjYuNzUgMjQxLjI4MiAyNi43NUMyMjQuMTYxIDI2LjgyOTMgMjEyLjUwOSAzOS40MzI0IDIxMi41MDkgNTYuODMxVjkwLjQzOTNIMjI4LjQ4MUMyMjguNDgxIDkwLjQzOTMgMjI4LjI0MyA2Ni4xMDUgMjI4LjI0MyA1Ny4zODU5QzIyOC4yNDMgNDguNjY2NyAyMzMuNTE0IDQyLjQwNDggMjQxLjM2MSA0Mi4zNjUyQzI0OS4yMDkgNDIuNDA0OCAyNTQuNDggNDguNjY2NyAyNTQuNDggNTcuMzg1OUMyNTQuNDggNjYuMTA1IDI1NC4yNDIgOTAuNDM5MyAyNTQuMjQyIDkwLjQzOTNIMjcwLjIxNFY1Ni44MzFDMjcwLjIxNCAzOS40MzI0IDI1OC41NjIgMjYuODI5MyAyNDEuNDQxIDI2Ljc1WiIgZmlsbD0iIzAwMjJGRiIvPgo8cGF0aCBkPSJNMTcyLjAwNSA5Mi4xNDY3QzE3Mi4wMDUgOTIuMTQ2NyAxNzIuMDQ0IDkyLjE0NjcgMTcyLjA4NCA5Mi4xNDY3QzE3Mi4wODQgOTIuMTQ2NyAxNzIuMTI0IDkyLjE0NjcgMTcyLjE2MyA5Mi4xNDY3QzE4OS4yODUgOTIuMDY3NSAyMDAuOTM2IDc5LjQ2NDQgMjAwLjkzNiA2Mi4wNjU3VjI4LjQ5NzFIMTg0Ljk2NUMxODQuOTY1IDI4LjQ5NzEgMTg1LjIwMiA1Mi44MzE0IDE4NS4yMDIgNjEuNTUwNUMxODUuMjAyIDcwLjI2OTYgMTc5LjkzMSA3Ni41MzE2IDE3Mi4wODQgNzYuNTcxMkMxNjQuMjM3IDc2LjUzMTYgMTU4Ljk2NiA3MC4yNjk2IDE1OC45NjYgNjEuNTUwNUMxNTguOTY2IDUyLjgzMTQgMTU5LjIwNCAyOC40OTcxIDE1OS4yMDQgMjguNDk3MUgxNDMuMjMyVjYyLjEwNTRDMTQzLjIzMiA3OS41MDQgMTU0Ljg4NCA5Mi4xMDcxIDE3Mi4wMDUgOTIuMTg2NFY5Mi4xNDY3WiIgZmlsbD0iIzAwMjJGRiIvPgo8cGF0aCBkPSJNNTIyLjkxIDgzLjA3MTJDNTIyLjkxIDg3LjExMzggNTE5LjYyIDkwLjQwMzIgNTE1LjU3OCA5MC40MDMyQzUxMS41MzUgOTAuNDAzMiA1MDguMjQ2IDg3LjExMzggNTA4LjI0NiA4My4wNzEyQzUwOC4yNDYgNzkuMDI4NyA1MTEuNTM1IDc1LjczOTMgNTE1LjU3OCA3NS43MzkzQzUxOS42MiA3NS43MzkzIDUyMi45MSA3OS4wMjg3IDUyMi45MSA4My4wNzEyWk01MjIuMjM2IDgzLjA3MTJDNTIyLjIzNiA3OS4zNDU4IDUxOS4yMjQgNzYuMzMzNyA1MTUuNTc4IDc2LjMzMzdDNTExLjkzMiA3Ni4zMzM3IDUwOC44OCA3OS4zNDU4IDUwOC44OCA4My4wNzEyQzUwOC44OCA4Ni43OTY3IDUxMS44OTIgODkuODA4OCA1MTUuNTc4IDg5LjgwODhDNTE5LjI2NCA4OS44MDg4IDUyMi4yMzYgODYuNzk2NyA1MjIuMjM2IDgzLjA3MTJaTTUxNy4yODIgODMuOTgyOEw1MTguODI4IDg2LjgzNjNINTE3LjEyM0w1MTUuODE2IDg0LjI5OTlINTE0LjcwNlY4Ni44MzYzSDUxMy4xNlY3OS4zNDU4SDUxNS42OTdDNTE3LjQ4IDc5LjM0NTggNTE4LjU1IDgwLjQ1NTUgNTE4LjU1IDgxLjc2MzRDNTE4LjU1IDgyLjc5MzggNTE4LjExNCA4My41NDY4IDUxNy4yODIgODMuOTgyOFpNNTE0Ljc0NiA4Mi44NzMxSDUxNS43MzZDNTE2LjU2OSA4Mi44NzMxIDUxNy4wNDQgODIuNDM3MSA1MTcuMDQ0IDgxLjg0MjZDNTE3LjA0NCA4MS4xNjg5IDUxNi41NjkgODAuNzcyNiA1MTUuNzM2IDgwLjc3MjZINTE0Ljc0NlY4Mi44NzMxWiIgZmlsbD0iIzAwMjJGRiIvPgo8L3N2Zz4K" width="290px" alt="Unlock">
             </a>
             <span class="badge bg-light text-dark m-1" title="{{ "now"|date(constant('\\DateTime::COOKIE')) }}">
                 Last updated: <br class="d-md-none"> <time datetime="{{ "now"|date(constant('\\DateTime::RFC3339')) }}">{{ "now"|date('l, d M Y H:i:s T') }}</time>
@@ -62,21 +64,17 @@
                     {% endfor %}
                 </optgroup>
             </select>
-            <div class="input-group-append">
-                <button
-                    class="btn btn-outline-secondary d-none toggle-settings"
-                    type="button"
-                    aria-pressed="false"
-                    aria-label="Toggle settings"
-                    title="Toggle settings"
-                    aria-expanded="false"
-                    aria-controls="package-filter-settings"
-                >
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" role="img">
-                        <path d="M11.998 7.66A4.339 4.339 0 007.661 12a4.342 4.342 0 004.337 4.34A4.33 4.33 0 0016.323 12a4.327 4.327 0 00-4.325-4.34zm8.697 6.833l-.782 1.883 1.395 2.739.184.362-1.933 1.933-3.173-1.498-1.883.773-.956 2.927-.122.388h-2.733l-1.183-3.303-1.883-.777-2.743 1.391-.362.181-1.933-1.932 1.497-3.174-.776-1.882-2.921-.954L0 13.425v-2.732L3.306 9.51l.775-1.88-1.39-2.745-.183-.36 1.93-1.93L7.615 4.09l1.88-.778.956-2.924.123-.388h2.732l1.183 3.307 1.879.778 2.744-1.392.365-.184 1.931 1.93-1.496 3.172.773 1.885 2.93.955.385.123v2.73l-3.305 1.189z"/>
-                    </svg>
-                </button>
-            </div>
+            <button
+                class="btn btn-outline-secondary d-none toggle-settings"
+                type="button"
+                aria-pressed="false"
+                aria-label="Toggle settings"
+                title="Toggle settings"
+                aria-expanded="false"
+                aria-controls="package-filter-settings"
+            >
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Pro v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M200.1-16l112 0 19.7 95.5c14.1 6 27.3 13.7 39.3 22.8l92.6-30.7 56 97-72.9 64.8c.9 7.4 1.3 15 1.3 22.7s-.5 15.3-1.3 22.7l72.9 64.8-56 97-92.6-30.7c-12.1 9.1-25.3 16.7-39.3 22.8l-19.7 95.5-112 0-19.7-95.5c-14.1-6-27.2-13.7-39.3-22.8l-92.6 30.7-56-97 72.9-64.8c-.9-7.4-1.3-15-1.3-22.7s.5-15.3 1.3-22.7l-72.9-64.8 56-97 92.6 30.7c12.1-9.1 25.3-16.7 39.3-22.8L200.1-16zm56 352a80 80 0 1 0 -.1-160 80 80 0 1 0 .1 160z"/></svg>
+            </button>
         </div>
     </form>
     <form id="package-filter-settings" class="my-3 card settings">
@@ -192,13 +190,9 @@
     </div>
     <label for="copy-snippet__input" class="visually-hidden">Release code snippet for composer json</label>
     <input id="copy-snippet__input" class="copy-snippet__input form-control" type="text">
-    <div class="input-group-append">
-        <button class="btn btn-outline-secondary copy-snippet__button" aria-label="Copy to clipboard" title="Copy to clipboard">
-            <svg role="img" height="24" width="22.4" viewBox="0 0 1024 896" xmlns="http://www.w3.org/2000/svg">
-                <path d="M704 896h-640v-576h640v192h64v-320c0-35-29-64-64-64h-192c0-71-57-128-128-128s-128 57-128 128h-192c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64v-128h-64v128z m-512-704c29 0 29 0 64 0s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64 33 0 64 0 64 29 64 64h-512c0-39 28-64 64-64z m-64 512h128v-64h-128v64z m448-128v-128l-256 192 256 192v-128h320v-128h-320z m-448 256h192v-64h-192v64z m320-448h-320v64h320v-64z m-192 128h-128v64h128v-64z"></path>
-            </svg>
-        </button>
-    </div>
+    <button class="btn btn-outline-secondary copy-snippet__button" aria-label="Copy to clipboard" title="Copy to clipboard">
+        <svg width="21" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Pro v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M352 0l-224 0 0 384 320 0 0-288-96-96zM64 128l-64 0 0 384 320 0 0-80-64 0 0 16-192 0 0-256 16 0 0-64-16 0z"/></svg>
+    </button>
 </div>
 
 <script type="text/javascript">

@@ -1,0 +1,26 @@
+#!/bin/bash
+#!/usr/bin/env bash
+
+BUILDER_DIR=~/Sites/satis
+PAGES_DIR=~/Sites/unlock-com.github.io
+FONTS_SRC="$BUILDER_DIR/views/build/fonts"
+FONTS_DST="$PAGES_DIR/build/fonts"
+
+current_date=$(date +"%m/%d/%Y")
+current_time=$(date +"%I:%M %p")
+
+cd "$PAGES_DIR"|| exit
+git pull
+
+cd "$BUILDER_DIR" || exit
+
+php bin/satis build satis.json "$PAGES_DIR"
+
+cd "$PAGES_DIR" || exit
+git add -A
+if git diff --cached --quiet; then
+  echo "No changes to publish."
+else
+git commit -m "Package Updates on ${current_date} at ${current_time}"
+git push
+fi
