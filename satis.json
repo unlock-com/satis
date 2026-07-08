@@ -34,6 +34,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/unlock-com/gf-conditional-submit-text"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/multisite-url-fixer"
         }
     ],
     "require-all": true
