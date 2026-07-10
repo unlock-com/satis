@@ -17,10 +17,4 @@ cd "$BUILDER_DIR" || exit
 php bin/satis build satis.json "$PAGES_DIR"
 
 cd "$PAGES_DIR" || exit
-git add -A
-if git diff --cached --quiet; then
-  echo "No changes to publish."
-else
-git commit -m "Package Updates on ${current_date} at ${current_time}"
-git push
-fi
+

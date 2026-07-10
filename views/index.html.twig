@@ -47,23 +47,28 @@
 
     <form class="my-3">
         <div class="input-group">
-            <label for="search" class="visually-hidden">Filter packages</label>
+            <div class="form-floating">
             <input type="search"
                 id="search"
                 class="form-control"
                 placeholder="Filter packages"
                 autocomplete="off"
                 autofocus>
-            <select class="form-select filter-field" aria-label="Filter by...">
-                <option value="all" selected disabled hidden>Filter by..</option>
-                <option value="all">All fields</option>
-                <optgroup label="Specific field...">
-                    <option value="name">Name</option>
-                    {% for fieldName, label in fieldsToToggle %}
-                    <option value="{{ fieldName }}">{{ label }}</option>
-                    {% endfor %}
-                </optgroup>
-            </select>
+                <label for="search">Filter packages</label>
+            </div>
+            <div class="form-floating">
+                <select class="form-select filter-field" id="filter" aria-label="Filter by...">
+                    <option value="">Filter by...</option>
+                    <option value="all">All fields</option>
+                    <optgroup label="Specific field...">
+                        <option value="name">Name</option>
+                        {% for fieldName, label in fieldsToToggle %}
+                            <option value="{{ fieldName }}">{{ label }}</option>
+                        {% endfor %}
+                    </optgroup>
+                </select>
+                <label for="filter">Filter by...</label>
+            </div>
             <button
                 class="btn btn-outline-secondary d-none toggle-settings"
                 type="button"
