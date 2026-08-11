@@ -38,6 +38,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/unlock-com/multisite-url-fixer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/unlock-com/gf-emailable"
         }
     ],
     "require-all": true
